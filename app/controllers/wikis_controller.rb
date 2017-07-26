@@ -1,14 +1,11 @@
 class WikisController < ApplicationController
-<<<<<<< HEAD
-=======
   skip_before_action :authenticate_user!, only: [:index, :show]
->>>>>>> blocipedia-4-crud
+
   def index
     @wikis = Wiki.all
   end
 
   def show
-<<<<<<< HEAD
   end
 
   def new
@@ -16,7 +13,6 @@ class WikisController < ApplicationController
   end
 
   def edit
-=======
     @wiki = Wiki.find(params[:id])
   end
 
@@ -68,6 +64,5 @@ class WikisController < ApplicationController
       flash.now[:alert] = "There was an error. Please try again."
       render :show
     end
->>>>>>> blocipedia-4-crud
   end
 end
