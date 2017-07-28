@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe WikisController, type: :controller do
 
-  let(:my_wiki) { Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false) }
+  let(:my_wiki) { Wiki.create!(title: Faker::DrWho.quote, body: Faker::Lorem.paragraph, private: false) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -44,16 +44,16 @@ RSpec.describe WikisController, type: :controller do
   describe "POST create" do
 
     it "increases the number of Wiki by 1" do
-      expect{wiki :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false}}.to change(Wiki,:count).by(1)
+      expect{wiki :create, wiki: {title: Faker::DrWho.quote, body: Faker::Lorem.paragraph, private: false}}.to change(Wiki,:count).by(1)
     end
 
     it "assigns the new wiki to @wiki" do
-      wiki :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false}
+      wiki :create, wiki: {title: Faker::DrWho.quote, body: Faker::Lorem.paragraph, private: false}
       expect(assigns(:wiki)).to eq Wiki.last
     end
 
     it "redirects to the new wiki" do
-      wiki :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false}
+      wiki :create, wiki: {title: Faker::DrWho.quote, body: Faker::Lorem.paragraph, private: false}
       expect(response).to redirect_to Wiki.last
     end
   end
