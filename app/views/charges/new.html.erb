@@ -1,0 +1,9 @@
+<%= form_tag charges_path do %>
+<div class="col-md-4">
+  <h3>Sign up for premium!</h3>
+  <p>One time fee of $15.00</p>
+
+  <script class='stripe-button'
+  src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
+</div>
+<% end %>
