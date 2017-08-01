@@ -12,12 +12,12 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: "Premium Membership - #{current_user.email}",
+      description: "Premium Membership",
       currency: 'usd'
     )
 
-    flash[:notice] = "Thanks for all the money, #{current_user.name}! Feel free to pay me again."
-    redirect_to user_path(current_user)
+    flash[:notice] = "Thanks for all the money! Feel free to pay me again."
+    redirect_to root_path
 
     rescue Stripe::CardError => e
       flash[:alert] = e.message

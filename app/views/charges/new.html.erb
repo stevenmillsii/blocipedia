@@ -1,4 +1,10 @@
 <%= form_tag charges_path do %>
+
+<div class="jumbotron">
+  <h2>Want to upgrade your membership?</h2>
+  <p>With premium you can create private wikis</p>
+</div>
+
 <div class="col-md-4">
   <h3>Sign up for premium!</h3>
   <p>One time fee of $15.00</p>
@@ -6,4 +12,15 @@
   <script class='stripe-button'
   src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
 </div>
+
+<div class="col-md-4">
+  <h3>Switch to Standard</h3>
+  <p>Want to cancel your premium membership?</p>
+</div>
+
+<div class="col-md-4">
+  <h3>Want to be an admin?</h3>
+  <p>Help monitor the wikis by being an admin.</p>
+</div>
+
 <% end %>
