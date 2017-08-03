@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_initialize :set_to_standard
+  after_initialize :set_to_standard, :if => :new_record?
 
   enum role: [:standard, :admin, :premium]
 
   private
   def set_to_standard
-    self.role = "standard"
+    self.role ||= "standard"
   end
 end
