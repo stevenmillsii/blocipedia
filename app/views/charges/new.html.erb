@@ -16,11 +16,17 @@
 <div class="col-md-4">
   <h3>Switch to Standard</h3>
   <p>Want to cancel your premium membership?</p>
+  <% if current_user.premium? || current_user.admin? %>
+    <%= button_to "Downgrade", downgrade_charges_path, :class => 'btn btn-primary' %>
+  <% end %>
 </div>
 
 <div class="col-md-4">
   <h3>Want to be an admin?</h3>
   <p>Help monitor the wikis by being an admin.</p>
+  <% if current_user.premium? || current_user.admin? %>
+    <%= button_to "Upgrade", admin_charges_path, :class => 'btn btn-primary' %>
+  <% end %>
 </div>
 
 <% end %>

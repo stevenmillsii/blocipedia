@@ -3,6 +3,7 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.all
+    @wikis = current_user.admin? || current_user.premium? ? Wiki.all : Wiki.where(private: false)
   end
 
   def show

@@ -26,11 +26,24 @@ class ChargesController < ApplicationController
   end
 
   def downgrade
-    if current_user.premium?
+    if current_user.premium? || current_user.admin?
       flash[:notice] = "Your account has been downgraded"
       current_user.standard!
+      current_user.wikis.where(private: true).update_all(private: false)
     else
       flash[:notice] = "You aren't allowed to downgrade"
+    end
+    redirect_to :back
+  end
+
+  def admin
+    if current_user.premium?
+      flash[:notice] = "You're now an admin"
+      current_user.admin!
+    elsif current_user.admin?
+      flash[:notice] = "You're already an admin!"
+    else
+      flash[:notice] = "You're not allowed to become an admin! Must be a premium user to upgrade!"
     end
     redirect_to :back
   end

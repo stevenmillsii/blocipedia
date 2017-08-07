@@ -36,9 +36,14 @@
   </div>
 <% end %>
 
-<% if current_user.premium? %>
-<h3>Downgrade my account</h3>
-<%= button_to "Downgrade", downgrade_charges_path %>
+<% if current_user.premium? || current_user.admin? %>
+  <h3>Downgrade my account</h3>
+  <%= button_to "Downgrade", downgrade_charges_path %>
+<% end %>
+
+<% if current_user %>
+  <h3>Upgrade to Admin</h3>
+  <%= button_to "Upgrade", admin_charges_path %>
 <% end %>
 
 <h3>Cancel my account</h3>
