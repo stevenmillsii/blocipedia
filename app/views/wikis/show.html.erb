@@ -5,7 +5,7 @@
 
 <div class="row">
   <div class="col-md-8">
-    <p><%= @wiki.body %></p>
+    <p><%= markdown(@wiki.body).html_safe %></p>
   </div>
   <% if user_is_authorized_for_private? %>
     <div class="col-md-4">
