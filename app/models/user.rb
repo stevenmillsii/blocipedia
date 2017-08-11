@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   enum role: [:standard, :admin, :premium]
 
+
   private
   def set_to_standard
     self.role ||= "standard"
