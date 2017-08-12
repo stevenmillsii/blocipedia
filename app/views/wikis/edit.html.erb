@@ -15,7 +15,11 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="form-group">
     <h3>Collaborators</h3>
+      <%= form_tag [@wiki, collaborator] do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Add User" %>
+      <% end %>
   </div>
 </div>
