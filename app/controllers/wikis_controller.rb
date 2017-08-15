@@ -16,6 +16,8 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.includes(:collaborators).find(params[:id])
+    @non_collaborators = User.all - @wiki.collaborator_users
   end
 
   def new
