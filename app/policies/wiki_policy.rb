@@ -7,7 +7,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    if wiki.private == true
+    if wiki.private?
       user.admin? || wiki.user == user || wiki.users.include?(user)
     else
       user.present?
@@ -49,7 +49,7 @@ class WikiPolicy < ApplicationPolicy
       elsif user.role == 'premium'
         all_wikis = scope.all
         all_wikis.each do |wiki|
-          if wiki.public? || wiki.owner == user || wiki.collaborators.include?(user)
+          if !wiki.private? || wiki.owner == user || wiki.collaborator_users.include?(user)
             wikis << wiki
           end
         end
@@ -57,7 +57,7 @@ class WikiPolicy < ApplicationPolicy
         all_wikis = scope.all
         wikis = []
         all_wikis.each do |wiki|
-          if wiki.public? || wiki.collaborators.include?(user)
+          if !wiki.private? || wiki.collaborator_users.include?(user)
             wikis << wiki
           end
         end

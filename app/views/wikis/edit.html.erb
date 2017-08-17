@@ -8,11 +8,21 @@
       <li>Don't use the letter "A".</li>
       <li>Make sure it's safe for work.</li>
     </ul>
-    <% @non_collaborators.each do |user| %>
-
-    <% end %>
   </div>
   <div class="col-md-8">
     <%= render partial: 'form', locals: { wiki: @wiki } %>
+  </div>
+</div>
+<div class="row">
+  <h2>Collaborators</h2>
+  <div class="col-md-6">
+  <% @non_collaborators.each do |user| %>
+    <%= user.email %> <%= button_to "Add Collaborator", wiki_collaborators_path(wiki_id: @wiki.id, user_id: user.id), method: :post %>
+  <% end %>
+  </div>
+  <div class="col-md-6">
+    <% @wiki.collaborators.each do |collaborator| %>
+      <%= collaborator.user.email %> <%= button_to "Remove Collaborator", wiki_collaborator_path(@wiki, collaborator), method: :delete %>
+    <% end %>
   </div>
 </div>

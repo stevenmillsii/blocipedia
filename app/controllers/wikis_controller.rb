@@ -15,7 +15,6 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
     @wiki = Wiki.includes(:collaborators).find(params[:id])
     @non_collaborators = User.all - @wiki.collaborator_users
   end
@@ -38,10 +37,6 @@ class WikisController < ApplicationController
       flash.now[:alert] = "There was an error. Please try again"
       render :new
     end
-  end
-
-  def edit
-    @wiki = Wiki.find(params[:id])
   end
 
   def update
